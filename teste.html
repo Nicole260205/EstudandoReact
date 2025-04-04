@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Máscara de Contrato</title>
+</head>
+
+<body>
+
+    <label for="contrato" style="font-size: 50px;">Número do contrato:</label>
+    <input type="text" style="font-size: 50px;" id="contrato" maxlength="23" oninput="formatarNumeroContrato(this)">
+
+    <script>
+        function formatarNumeroContrato(input) {
+            let valorBruto = input.value.replace(/\D/g, ''); 
+            let valorFormatado = '';
+            let tipoFormato = '';
+
+            if (valorBruto.length <= 14) {
+                // Formato simples: XXXXXXXXXX/AAAA
+                valorBruto = valorBruto.slice(0, 14);
+                valorFormatado = valorBruto.replace(/^(\d{0,10})(\d{0,4})/,
+                    (match, p1, p2) => {
+                        let resultado = '';
+                        if (p1) resultado += p1;
+                        if (p2) resultado += '/' + p2;
+                        return resultado;
+                    });
+                tipoFormato = 'Formato simples identificado: XXXXXXXXXX/AAAA';
+
+            } else {
+                // Formato completo: NNNNN-NNNNNNNN/AAAA-DD
+                valorBruto = valorBruto.slice(0, 19);
+                valorFormatado = valorBruto.replace(/^(\d{0,5})(\d{0,8})(\d{0,4})(\d{0,2})/,
+                    (match, p1, p2, p3, p4) => {
+                        let resultado = '';
+                        if (p1) resultado += p1;
+                        if (p2) resultado += '-' + p2;
+                        if (p3) resultado += '/' + p3;
+                        if (p4) resultado += '-' + p4;
+                        return resultado;
+                    });
+                tipoFormato = 'Formato completo identificado: NNNNN-NNNNNNNN/AAAA-DD';
+            }
+
+            input.value = valorFormatado;
+            console.log(tipoFormato);
+        }
+    </script>
+
+</body>
+
+</html>
