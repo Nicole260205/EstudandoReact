@@ -22,7 +22,7 @@ function AddItem(props) {
   return (
     <div className="container">
       <div className="row">
-        <h2>Search for an item</h2>
+        <h2>Add an item</h2>
       </div>
       <div className="row">
         <label htmlFor="name-field">Name: </label>

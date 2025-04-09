@@ -18,7 +18,7 @@ function SearchBar(props) {
   return (
     <div className="container">
       <div className="row">
-        <h2>Search for an item</h2>
+        <h2>Search for a item</h2>
       </div>
       <div className="row">
         <div className="col">
@@ -55,7 +55,6 @@ function SearchBar(props) {
         </div>
 
         <div className="col">
-          {" "}
           <label htmlFor="brand-field">Brand: </label>
           <input
             id="brand-field"
